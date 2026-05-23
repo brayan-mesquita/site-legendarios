@@ -3,8 +3,47 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Legendários - Porto Velho, RO</title>
+  <title>Legendários Porto Velho, RO | Destemidos Pioneiros</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Movimento cristão global de homens em busca da sua melhor versão por meio de desafios físicos, mentais e espirituais. Descubra o TOP em Porto Velho, RO.">
+  <meta name="author" content="Legendários Porto Velho">
+  
+  <!-- Open Graph / Facebook / WhatsApp -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Legendários Porto Velho, RO | Destemidos Pioneiros">
+  <meta property="og:description" content="Movimento cristão global de homens em busca da sua melhor versão por meio de desafios físicos, mentais e espirituais. Descubra a jornada do TOP.">
+  <meta property="og:image" content="https://legendariosportovelho.com.br/logo.png">
+  <meta property="og:url" content="https://legendariosportovelho.com.br">
+  <meta property="og:site_name" content="Legendários Porto Velho">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Legendários Porto Velho, RO | Destemidos Pioneiros">
+  <meta name="twitter:description" content="Movimento cristão global de homens em busca da sua melhor versão. Descubra o TOP em Porto Velho, RO.">
+  <meta name="twitter:image" content="https://legendariosportovelho.com.br/logo.png">
+
+  <!-- JSON-LD Structured Data (SEO) -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Legendários Porto Velho",
+      "alternateName": "Destemidos Pioneiros",
+      "url": "https://legendariosportovelho.com.br",
+      "logo": "https://legendariosportovelho.com.br/logo.png",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+55-69-99940-7137",
+        "contactType": "Coordenador",
+        "areaServed": "Porto Velho",
+        "availableLanguage": "Portuguese"
+      },
+      "sameAs": [
+        "https://instagram.com/legendariosportovelho"
+      ],
+      "description": "Um movimento global de homens que buscam sua melhor versão por meio de imersões radicais, resiliência e fé cristã."
+    }
+  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,13 +53,16 @@
 
   <style>
     :root {
-      --bg: #000000;
-      --bg-alt: #0a0a0a;
-      --surface: #1a1a1a;
-      --fg: #ffffff;
-      --muted: #a0a0a0;
-      --accent: #f15a24;
-      --accent-hover: #d1491a;
+      --bg: oklch(15% 0.01 0);
+      --bg-alt: oklch(12% 0.01 0);
+      --surface: oklch(20% 0.01 0);
+      --fg: oklch(98% 0 0);
+      --muted: oklch(70% 0 0);
+      --border: oklch(30% 0 0);
+      --accent: oklch(60% 0.22 35);
+      --accent-hover: oklch(55% 0.24 35);
+      --accent-glow: oklch(60% 0.22 35 / 10%);
+      --accent-glow-strong: oklch(60% 0.22 35 / 25%);
 
       --font-display: 'Montserrat', sans-serif;
       --font-body: 'Inter', sans-serif;
@@ -43,7 +85,39 @@
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
+      position: relative;
     }
+
+    /* Noise Texture Overlay */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      opacity: 0.035;
+      pointer-events: none;
+      z-index: 99999;
+    }
+
+    /* Glow Spots */
+    .glow-blob {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, var(--accent-glow-strong) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+      filter: blur(80px);
+      opacity: 0.7;
+    }
+
+    .glow-1 { top: -10%; left: -10%; }
+    .glow-2 { bottom: -20%; right: -10%; width: 500px; height: 500px; }
+    .glow-3 { top: 20%; right: -20%; width: 600px; height: 600px; }
 
     img {
       max-width: 100%;
@@ -668,43 +742,52 @@
       color: var(--muted);
     }
 
-    /* Contact Section / Footer */
+    /* Contact Section */
     .footer-section {
-      background-color: var(--accent);
+      background-color: var(--bg-alt);
       padding: 80px 0;
       position: relative;
+      border-top: 1px solid var(--border);
     }
 
     .contact-card {
-      background-color: #fff;
-      color: #000;
-      border-radius: 12px;
+      background: var(--surface);
+      color: var(--fg);
+      border-radius: 16px;
       display: grid;
       grid-template-columns: 1fr 1.5fr;
       overflow: hidden;
-      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
     }
 
     .contact-info {
       padding: 60px;
-      background-color: #f8f8f8;
+      background-color: oklch(18% 0.01 0);
       display: flex;
       flex-direction: column;
       justify-content: center;
+      border-right: 1px solid var(--border);
     }
 
     .contact-info h3 {
-      font-size: 36px;
+      font-size: 32px;
       margin-bottom: 24px;
+      color: var(--accent);
     }
 
     .contact-info p {
       margin-bottom: 32px;
-      color: #555;
+      color: var(--muted);
     }
 
     .contact-form {
       padding: 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     .form-grid {
@@ -723,18 +806,21 @@
 
     .form-control {
       width: 100%;
-      background-color: #eee;
-      border: 1px solid transparent;
+      background-color: oklch(14% 0.01 0);
+      border: 1px solid var(--border);
       padding: 15px;
-      border-radius: 4px;
+      border-radius: 6px;
       font-family: var(--font-body);
       font-size: 14px;
+      color: var(--fg);
+      transition: all 0.3s ease;
     }
 
     .form-control:focus {
       outline: none;
       border-color: var(--accent);
-      background-color: #fff;
+      background-color: oklch(16% 0.01 0);
+      box-shadow: 0 0 15px var(--accent-glow-strong);
     }
 
     textarea.form-control {
@@ -1001,6 +1087,63 @@
         gap: 30px;
       }
     }
+
+    /* Video Lightbox Modal */
+    .video-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.95);
+      z-index: 99999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+      backdrop-filter: blur(15px);
+    }
+
+    .video-modal.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .video-modal-content {
+      width: 90%;
+      max-width: 960px;
+      aspect-ratio: 16/9;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8), 0 0 30px var(--accent-glow-strong);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      transform: scale(0.9);
+      transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .video-modal.active .video-modal-content {
+      transform: scale(1);
+    }
+
+    .video-modal-close {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      color: #fff;
+      font-size: 50px;
+      cursor: pointer;
+      line-height: 1;
+      transition: all 0.3s ease;
+      user-select: none;
+      z-index: 100000;
+    }
+
+    .video-modal-close:hover {
+      color: var(--accent);
+      transform: rotate(90deg) scale(1.1);
+    }
   </style>
 </head>
 
@@ -1045,27 +1188,28 @@
     </section>
 
     <section id="sobre" class="about"
-      style="background-color: var(--accent); color: #000; position: relative; overflow: hidden;">
+      style="background-color: var(--bg); color: var(--fg); position: relative; overflow: hidden;">
       <div class="container about-grid">
         <div class="about-content reveal-left">
           <div class="section-title">
-            <h2 style="color: #000;">SOBRE OS <span style="color: #fff;">LEGENDÁRIOS</span></h2>
+            <h2>SOBRE OS <span>LEGENDÁRIOS</span></h2>
           </div>
-          <p style="color: rgba(0,0,0,0.8); font-weight: 500;">Legendários é um movimento que procura a transformação
-            dos homens, famílias e comunidades através de experiências que levam aos homens encontrar a melhor versão de
-            si mesmo, se conectando com Legendário número 1, Jesus Cristo, e alcançar um novo potencial, novo nível de
+          <p style="color: var(--fg); opacity: 0.9; font-weight: 500;">Legendários é um movimento que procura a transformação
+            dos homens, famílias e comunidades através de experiências que levam aos homens a encontrar a melhor versão de
+            si mesmos, se conectando com o Legendário número 1, Jesus Cristo, e alcançando um novo potencial, novo nível de
             amor, honra e unidade.</p>
-          <p style="color: rgba(0,0,0,0.8); font-weight: 500;">Trazer de volta o herói caçador para cada família, é um
-            propósito que temos como Legendários que tem levado a formar homens inquebráveis diante do pecado, porém
+          <p style="color: var(--muted); font-weight: 500;">Trazer de volta o herói caçador para cada família é um
+            propósito que temos como Legendários, o qual tem levado a formar homens inquebráveis diante do pecado, porém
             quebrantados diante de Deus.</p>
         </div>
         <div class="about-images reveal-right">
-          <img src="legendarios_mata.webp" alt="Legendários na Mata" class="image-reveal">
+          <img src="legendarios_mata.webp" alt="Legendários na Mata" class="image-reveal" style="border: 2px solid var(--border); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);">
         </div>
       </div>
     </section>
 
-    <section class="stats-section">
+    <section class="stats-section" style="position: relative; overflow: hidden;">
+      <div class="glow-blob glow-2"></div>
       <div class="container">
         <div class="stats-grid">
           <div class="stat-item reveal" style="transition-delay: 0s;">
@@ -1151,30 +1295,26 @@
       async function loadGallery() {
         const marquee = document.getElementById('galleryMarquee');
         const maxPhotos = 20;
-        let photosFound = [];
+        
+        // Executa as requisições HEAD em paralelo para máxima velocidade
+        const checkPromises = Array.from({ length: maxPhotos }, (_, idx) => {
+          const imgUrl = `galeria/foto${idx + 1}.jpg`;
+          return fetch(imgUrl, { method: 'HEAD' })
+            .then(response => response.ok ? imgUrl : null)
+            .catch(() => null);
+        });
 
-        for (let i = 1; i <= maxPhotos; i++) {
-          const imgUrl = `galeria/foto${i}.jpg`;
-          try {
-            const response = await fetch(imgUrl, { method: 'HEAD' });
-            if (response.ok) {
-              photosFound.push(imgUrl);
-            }
-          } catch (e) { }
-        }
+        const results = await Promise.all(checkPromises);
+        const photosFound = results.filter(url => url !== null);
 
         if (photosFound.length > 0) {
           marquee.innerHTML = '';
-          photosFound.forEach(src => {
+          // Renderiza a galeria principal e a duplicada para efeito infinito
+          const renderPhotos = [...photosFound, ...photosFound];
+          renderPhotos.forEach(src => {
             const item = document.createElement('div');
             item.className = 'gallery-item';
-            item.innerHTML = `<img src="${src}" alt="Legendários Porto Velho">`;
-            marquee.appendChild(item);
-          });
-          photosFound.forEach(src => {
-            const item = document.createElement('div');
-            item.className = 'gallery-item';
-            item.innerHTML = `<img src="${src}" alt="Legendários Porto Velho">`;
+            item.innerHTML = `<img src="${src}" alt="Legendários Porto Velho" loading="lazy">`;
             marquee.appendChild(item);
           });
 
@@ -1200,12 +1340,13 @@
             <h2 style="color: #000;">LISTA DE <span style="color: #fff;">INTERESSADOS</span></h2>
           </div>
           <p>Não existem eventos disponíveis no momento! Fale conosco pelo WhatsApp para saber dos próximos eventos da Legendários Porto Velho.</p>
-          <a href="https://wa.me/5569000000000" class="btn" target="_blank" style="background-color: #000; color: #fff;">QUERO SER UM LEGENDÁRIO</a>
+          <a href="#contato" class="btn" style="background-color: #000; color: #fff;">QUERO SER UM LEGENDÁRIO</a>
         </div>
       </div>
     </section>
 
-    <section id="faq" class="faq-section">
+    <section id="faq" class="faq-section" style="position: relative; overflow: hidden;">
+      <div class="glow-blob glow-3"></div>
       <div class="container">
         <div class="section-title reveal" style="text-align: center;">
           <h2>PERGUNTAS <span>FREQUENTES</span></h2>
@@ -1271,6 +1412,49 @@
       </div>
     </section>
 
+    <!-- Contact Section -->
+    <section id="contato" class="footer-section" style="position: relative; overflow: hidden;">
+      <div class="glow-blob glow-1"></div>
+      <div class="container">
+        <div class="contact-card reveal-scale">
+          <div class="contact-info">
+            <h3>FALE CONOSCO</h3>
+            <p>Tem dúvidas sobre o TOP ou quer saber mais sobre os próximos eventos? Deixe sua mensagem e um coordenador dos Legendários entrará em contato.</p>
+            <div style="display: flex; flex-direction: column; gap: 20px; font-weight: 600; font-size: 14px; color: var(--fg); opacity: 0.95;">
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color: var(--accent);"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                <span>(69) 99940-7137</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color: var(--accent);"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                <span style="font-size: 13px;">contato@legendariosportovelho.com.br</span>
+              </div>
+            </div>
+          </div>
+          <div class="contact-form">
+            <form id="formContato">
+              <div class="form-grid">
+                <div class="form-group">
+                  <input type="text" id="formNome" class="form-control" placeholder="Seu Nome" required>
+                </div>
+                <div class="form-group">
+                  <input type="tel" id="formWhatsApp" class="form-control" placeholder="WhatsApp (DDD + Número)" required>
+                </div>
+                <div class="form-group full">
+                  <input type="text" id="formCidade" class="form-control" placeholder="Sua Cidade" required>
+                </div>
+                <div class="form-group full">
+                  <textarea id="formMensagem" class="form-control" placeholder="Sua Mensagem / Como conheceu os Legendários?" required></textarea>
+                </div>
+                <div class="form-group full">
+                  <button type="submit" class="btn btn-submit">ENVIAR INTERESSE</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
 
   </main>
 
@@ -1314,7 +1498,7 @@
         <div class="footer-col reveal" style="transition-delay: 0.3s;">
           <h4>CONTATO</h4>
           <ul>
-            <li><a href="https://wa.me/5569000000000" target="_blank">WhatsApp</a></li>
+            <li><a href="https://wa.me/5569999407137" target="_blank">WhatsApp</a></li>
             <li><a href="#">Instagram</a></li>
             <li><a href="#">Email</a></li>
             <li><a href="#">Porto Velho, RO</a></li>
@@ -1327,7 +1511,7 @@
     </div>
   </footer>
 
-  <a href="https://wa.me/5569000000000" class="whatsapp-btn" target="_blank">
+  <a href="https://wa.me/5569999407137" class="whatsapp-btn" target="_blank">
     <svg width="34" height="34" viewBox="0 0 24 24" fill="currentColor">
       <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.262 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.66.986 3.288 1.489 4.908 1.49 5.385 0 9.778-4.387 9.78-9.77 0-2.61-1.014-5.059-2.859-6.908C16.581 2.115 14.137.949 11.53.949c-5.384 0-9.78 4.386-9.783 9.771 0 1.905.5 3.754 1.454 5.397L2.174 21.75l5.808-1.522c.002-.001.002 0 0 0zm10.706-7.531c-.279-.14-1.647-.812-1.9-.905-.253-.092-.438-.14-.622.14-.183.279-.711.905-.871 1.09-.16.183-.32.207-.599.068-.28-.14-1.18-.435-2.247-1.39-.83-.74-1.39-1.653-1.553-1.93-.163-.28-.018-.431.122-.57.125-.124.28-.328.42-.492.139-.163.185-.279.28-.464.093-.19.046-.356-.022-.493-.069-.138-.622-1.5-.853-2.053-.224-.541-.47-.468-.644-.477-.168-.008-.36-.01-.553-.01-.193 0-.508.073-.774.359-.266.287-1.016 1.012-1.016 2.47 0 1.457 1.06 2.864 1.208 3.062.149.198 2.086 3.196 5.055 4.479.706.305 1.258.487 1.687.625.71.226 1.357.194 1.868.118.57-.085 1.647-.674 1.88-1.325.234-.653.234-1.213.164-1.326-.07-.113-.26-.18-.54-.32z"/>
     </svg>
@@ -1342,6 +1526,21 @@
       const isMobile = window.innerWidth < 768;
       const count = isMobile ? 25 : 60;
       const colors = ['#f15a24', '#ff7b00', '#ffb700', '#ffffff'];
+
+      // Rastreamento da posição do mouse
+      let mouse = { x: null, y: null, radius: 120 };
+      const hero = canvas.parentElement;
+
+      hero.addEventListener('mousemove', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        mouse.x = e.clientX - rect.left;
+        mouse.y = e.clientY - rect.top;
+      });
+
+      hero.addEventListener('mouseleave', () => {
+        mouse.x = null;
+        mouse.y = null;
+      });
 
       function resize() {
         const hero = canvas.parentElement;
@@ -1367,6 +1566,21 @@
           this.wobble += this.wobbleSpeed;
           this.y -= this.speedY;
           this.x += this.drift + Math.sin(this.wobble) * 0.5;
+
+          // Efeito de repulsão ao aproximar o mouse
+          if (mouse.x !== null && mouse.y !== null) {
+            const dx = this.x - mouse.x;
+            const dy = this.y - mouse.y;
+            const distance = Math.hypot(dx, dy);
+            if (distance < mouse.radius) {
+              const force = (mouse.radius - distance) / mouse.radius; // 0 a 1
+              const angle = Math.atan2(dy, dx);
+              // Empurra gentilmente a partícula para longe do cursor
+              this.x += Math.cos(angle) * force * 2.5;
+              this.y += Math.sin(angle) * force * 2.5;
+            }
+          }
+
           this.opacity -= this.decay;
           if (this.opacity <= 0 || this.y < -10) this.reset();
         }
@@ -1503,6 +1717,99 @@
 
       window.addEventListener('scroll', animateCounters);
       animateCounters();
+    });
+  </script>
+
+  <!-- Video Lightbox Modal -->
+  <div id="videoModal" class="video-modal" aria-hidden="true" role="dialog" aria-label="Vídeo do TOP">
+    <div class="video-modal-close" id="closeVideo">&times;</div>
+    <div class="video-modal-content">
+      <video id="lightboxVideo" controls loop playsinline style="width: 100%; height: 100%; border-radius: 8px; display: none;">
+        <source src="video-top.mp4" type="video/mp4">
+        Seu navegador não suporta a tag de vídeo.
+      </video>
+      <iframe id="lightboxIframe" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="width: 100%; height: 100%; border-radius: 8px; display: none;"></iframe>
+    </div>
+  </div>
+
+  <script>
+    // Gerenciador de Envio do Formulário de Contato
+    document.addEventListener('DOMContentLoaded', function () {
+      const form = document.getElementById('formContato');
+      if (form) {
+        form.addEventListener('submit', function (event) {
+          event.preventDefault();
+          const btn = form.querySelector('.btn-submit');
+          const originalText = btn.textContent;
+          btn.textContent = 'ENVIANDO...';
+          btn.disabled = true;
+
+          // Simulação de envio com feedback visual de alta fidelidade
+          setTimeout(() => {
+            const card = form.closest('.contact-card');
+            if (card) {
+              card.innerHTML = `
+                <div style="grid-column: span 2; padding: 80px 40px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px; background-color: oklch(18% 0.01 0); animation: fadeIn 0.8s cubic-bezier(0.23, 1, 0.32, 1) both;">
+                  <div style="width: 80px; height: 80px; background-color: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 36px; color: #fff; box-shadow: 0 10px 30px var(--accent-glow-strong); animation: playPulse 2s infinite;">✓</div>
+                  <div>
+                    <h3 style="font-family: var(--font-display); font-size: 28px; font-weight: 900; color: var(--accent); text-transform: uppercase; letter-spacing: -0.01em; margin-bottom: 8px;">Interesse Registrado!</h3>
+                    <p style="color: var(--muted); font-size: 16px; max-width: 500px; margin: 0 auto; line-height: 1.6; font-family: var(--font-body);">Obrigado por seu posicionamento, guerreiro. Suas informações foram recebidas. Um coordenador do movimento Legendários Porto Velho entrará em contato em breve via WhatsApp.</p>
+                  </div>
+                </div>
+              `;
+            }
+          }, 1500);
+        });
+      }
+    });
+
+    // Gerenciador do Reprodutor de Vídeo Lightbox
+    document.addEventListener('DOMContentLoaded', function () {
+      const videoContainer = document.querySelector('.video-container');
+      const videoModal = document.getElementById('videoModal');
+      const closeVideo = document.getElementById('closeVideo');
+      const lightboxVideo = document.getElementById('lightboxVideo');
+      const lightboxIframe = document.getElementById('lightboxIframe');
+
+      if (videoContainer && videoModal) {
+        videoContainer.addEventListener('click', () => {
+          videoModal.classList.add('active');
+          videoModal.setAttribute('aria-hidden', 'false');
+
+          // Vídeo padrão inspirador de montanha e aventura no YouTube (temporário até receber o link definitivo)
+          const youtubeUrl = "https://www.youtube.com/embed/5F216CgR3qU?autoplay=1&mute=0&loop=1&playlist=5F216CgR3qU"; 
+          
+          lightboxIframe.src = youtubeUrl;
+          lightboxIframe.style.display = 'block';
+          lightboxVideo.style.display = 'none';
+        });
+      }
+
+      function stopAndCloseVideo() {
+        videoModal.classList.remove('active');
+        videoModal.setAttribute('aria-hidden', 'true');
+        lightboxIframe.src = "";
+        lightboxVideo.pause();
+        lightboxVideo.currentTime = 0;
+      }
+
+      if (closeVideo) {
+        closeVideo.addEventListener('click', stopAndCloseVideo);
+      }
+
+      if (videoModal) {
+        videoModal.addEventListener('click', (e) => {
+          if (e.target === videoModal) {
+            stopAndCloseVideo();
+          }
+        });
+      }
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && videoModal.classList.contains('active')) {
+          stopAndCloseVideo();
+        }
+      });
     });
   </script>
 
