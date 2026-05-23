@@ -5,13 +5,15 @@
   <meta charset="utf-8">
   <title>Legendários Porto Velho, RO | Destemidos Pioneiros</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Movimento cristão global de homens em busca da sua melhor versão por meio de desafios físicos, mentais e espirituais. Descubra o TOP em Porto Velho, RO.">
+  <meta name="description"
+    content="Movimento cristão global de homens em busca da sua melhor versão por meio de desafios físicos, mentais e espirituais. Descubra o TOP em Porto Velho, RO.">
   <meta name="author" content="Legendários Porto Velho">
-  
+
   <!-- Open Graph / Facebook / WhatsApp -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Legendários Porto Velho, RO | Destemidos Pioneiros">
-  <meta property="og:description" content="Movimento cristão global de homens em busca da sua melhor versão por meio de desafios físicos, mentais e espirituais. Descubra a jornada do TOP.">
+  <meta property="og:description"
+    content="Movimento cristão global de homens em busca da sua melhor versão por meio de desafios físicos, mentais e espirituais. Descubra a jornada do TOP.">
   <meta property="og:image" content="https://legendariosportovelho.com.br/logo.png">
   <meta property="og:url" content="https://legendariosportovelho.com.br">
   <meta property="og:site_name" content="Legendários Porto Velho">
@@ -19,7 +21,8 @@
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Legendários Porto Velho, RO | Destemidos Pioneiros">
-  <meta name="twitter:description" content="Movimento cristão global de homens em busca da sua melhor versão. Descubra o TOP em Porto Velho, RO.">
+  <meta name="twitter:description"
+    content="Movimento cristão global de homens em busca da sua melhor versão. Descubra o TOP em Porto Velho, RO.">
   <meta name="twitter:image" content="https://legendariosportovelho.com.br/logo.png">
 
   <!-- JSON-LD Structured Data (SEO) -->
@@ -116,9 +119,24 @@
       opacity: 0.7;
     }
 
-    .glow-1 { top: -10%; left: -10%; }
-    .glow-2 { bottom: -20%; right: -10%; width: 500px; height: 500px; }
-    .glow-3 { top: 20%; right: -20%; width: 600px; height: 600px; }
+    .glow-1 {
+      top: -10%;
+      left: -10%;
+    }
+
+    .glow-2 {
+      bottom: -20%;
+      right: -10%;
+      width: 500px;
+      height: 500px;
+    }
+
+    .glow-3 {
+      top: 20%;
+      right: -20%;
+      width: 600px;
+      height: 600px;
+    }
 
     img {
       max-width: 100%;
@@ -287,17 +305,28 @@
       width: 200%;
       height: 200%;
       background: radial-gradient(circle at 30% 50%, rgba(241, 90, 36, 0.08) 0%, transparent 50%),
-                  radial-gradient(circle at 70% 80%, rgba(255, 183, 0, 0.05) 0%, transparent 40%);
+        radial-gradient(circle at 70% 80%, rgba(255, 183, 0, 0.05) 0%, transparent 40%);
       animation: heroGradient 15s ease infinite alternate;
       pointer-events: none;
       z-index: 1;
     }
 
     @keyframes heroGradient {
-      0% { transform: translate(0, 0) rotate(0deg); }
-      33% { transform: translate(2%, -2%) rotate(3deg); }
-      66% { transform: translate(-1%, 3%) rotate(-2deg); }
-      100% { transform: translate(1%, -1%) rotate(1deg); }
+      0% {
+        transform: translate(0, 0) rotate(0deg);
+      }
+
+      33% {
+        transform: translate(2%, -2%) rotate(3deg);
+      }
+
+      66% {
+        transform: translate(-1%, 3%) rotate(-2deg);
+      }
+
+      100% {
+        transform: translate(1%, -1%) rotate(1deg);
+      }
     }
 
     #particles-canvas {
@@ -402,7 +431,7 @@
       opacity: 0;
       transform: translateY(40px);
       transition: opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1),
-                  transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
     }
 
     .reveal.visible {
@@ -414,7 +443,7 @@
       opacity: 0;
       transform: translateX(-60px);
       transition: opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1),
-                  transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
     }
 
     .reveal-left.visible {
@@ -426,7 +455,7 @@
       opacity: 0;
       transform: translateX(60px);
       transition: opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1),
-                  transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
     }
 
     .reveal-right.visible {
@@ -438,7 +467,7 @@
       opacity: 0;
       transform: scale(0.9);
       transition: opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1),
-                  transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
     }
 
     .reveal-scale.visible {
@@ -459,7 +488,7 @@
     /* About Section */
     .about-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1.2fr;
       gap: 60px;
       align-items: center;
     }
@@ -475,28 +504,29 @@
     }
 
     .about-images img {
-      width: 85%;
-      max-width: 450px;
+      width: 100%;
+      max-width: 100%;
       margin: 0 auto;
       display: block;
       height: auto;
       object-fit: cover;
-      border-radius: 8px;
-      border: 4px solid #000;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      border-radius: 12px;
+      border: none;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
       transition: all 0.5s ease;
     }
 
     .about-images img:hover {
       transform: scale(1.02);
+      box-shadow: 0 28px 60px rgba(0, 0, 0, 0.65);
     }
 
 
 
     /* Video Section */
     .video-section {
-      background: linear-gradient(135deg, var(--accent) 0%, #ffb700 100%);
-      border-bottom: 1px solid rgba(0,0,0,0.2);
+      background: linear-gradient(135deg, var(--accent) 0%, #ff9100f6 100%);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     }
 
     .video-container {
@@ -548,9 +578,17 @@
     }
 
     @keyframes playPulse {
-      0% { box-shadow: 0 0 0 0 rgba(241, 90, 36, 0.4); }
-      70% { box-shadow: 0 0 0 20px rgba(241, 90, 36, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(241, 90, 36, 0); }
+      0% {
+        box-shadow: 0 0 0 0 rgba(241, 90, 36, 0.4);
+      }
+
+      70% {
+        box-shadow: 0 0 0 20px rgba(241, 90, 36, 0);
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(241, 90, 36, 0);
+      }
     }
 
     .video-placeholder:hover .play-button {
@@ -565,7 +603,7 @@
       position: relative;
       overflow: hidden;
       text-align: center;
-      border-bottom: 1px solid rgba(0,0,0,0.2);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     }
 
     .events-section::before {
@@ -761,7 +799,7 @@
       max-height: 0;
       overflow: hidden;
       transition: max-height 0.4s cubic-bezier(0.23, 1, 0.32, 1),
-                  padding 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        padding 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     }
 
     .faq-answer-inner {
@@ -868,9 +906,17 @@
     }
 
     @keyframes whatsappPulse {
-      0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
-      70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+      0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
+      }
+
+      70% {
+        box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+      }
     }
 
     .whatsapp-btn:hover {
@@ -1021,9 +1067,6 @@
         gap: 30px;
       }
     }
-
-
-
   </style>
 </head>
 
@@ -1079,16 +1122,20 @@
           <div class="section-title">
             <h2>SOBRE OS <span>LEGENDÁRIOS</span></h2>
           </div>
-          <p style="color: var(--fg); opacity: 0.9; font-weight: 500;">Legendários é um movimento que procura a transformação
-            dos homens, famílias e comunidades através de experiências que levam aos homens a encontrar a melhor versão de
-            si mesmos, se conectando com o Legendário número 1, Jesus Cristo, e alcançando um novo potencial, novo nível de
+          <p style="color: var(--fg); opacity: 0.9; font-weight: 500;">Legendários é um movimento que procura a
+            transformação
+            dos homens, famílias e comunidades através de experiências que levam aos homens a encontrar a melhor versão
+            de
+            si mesmos, se conectando com o Legendário número 1, Jesus Cristo, e alcançando um novo potencial, novo nível
+            de
             amor, honra e unidade.</p>
           <p style="color: var(--muted); font-weight: 500;">Trazer de volta o herói caçador para cada família é um
             propósito que temos como Legendários, o qual tem levado a formar homens inquebráveis diante do pecado, porém
             quebrantados diante de Deus.</p>
         </div>
         <div class="about-images reveal-right">
-          <img src="legendarios_mata.webp" alt="Legendários na Mata" class="image-reveal" style="border: 2px solid var(--border); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);">
+          <img src="imagem-legendarios.webp" alt="Legendários" class="image-reveal"
+            style="border: 2px solid var(--border); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);">
         </div>
       </div>
     </section>
@@ -1158,7 +1205,7 @@
       async function loadGallery() {
         const marquee = document.getElementById('galleryMarquee');
         const maxPhotos = 20;
-        
+
         // Executa as requisições HEAD em paralelo para máxima velocidade
         const checkPromises = Array.from({ length: maxPhotos }, (_, idx) => {
           const imgUrl = `galeria/foto${idx + 1}.jpg`;
@@ -1200,7 +1247,10 @@
       <div class="container">
         <div class="section-title reveal" style="text-align: center; margin-bottom: 30px;">
           <h2 style="color: #fff;">EVENTOS</h2>
-          <p style="color: rgba(255, 255, 255, 0.95); font-size: 16px; max-width: 650px; margin: 16px auto 0; font-weight: 500; text-transform: none; font-family: var(--font-body);">Não existem eventos disponíveis no momento! Preencha o formulário abaixo para ser avisado dos próximos eventos da Legendários Porto Velho.</p>
+          <p
+            style="color: rgba(255, 255, 255, 0.95); font-size: 16px; max-width: 650px; margin: 16px auto 0; font-weight: 500; text-transform: none; font-family: var(--font-body);">
+            Não existem eventos disponíveis no momento! Preencha o formulário abaixo para ser avisado dos próximos
+            eventos da Legendários Porto Velho.</p>
         </div>
         <div class="events-card reveal-scale">
           <div class="events-card-title">
@@ -1228,7 +1278,8 @@
             </div>
             <div class="faq-answer">
               <div class="faq-answer-inner">
-                Um movimento global de homens que buscam sua melhor versão através de desafios físicos, mentais e espirituais.
+                Um movimento global de homens que buscam sua melhor versão através de desafios físicos, mentais e
+                espirituais.
               </div>
             </div>
           </div>
@@ -1239,7 +1290,8 @@
             </div>
             <div class="faq-answer">
               <div class="faq-answer-inner">
-                O TOP (Treinamento de Oração e Preparação) é uma experiência de 72 horas de imersão total na natureza e em desafios.
+                O TOP (Treinamento de Oração e Preparação) é uma experiência de 72 horas de imersão total na natureza e
+                em desafios.
               </div>
             </div>
           </div>
@@ -1250,7 +1302,8 @@
             </div>
             <div class="faq-answer">
               <div class="faq-answer-inner">
-                Para se desconectar do mundo, enfrentar seus medos, fortalecer sua fé e se tornar o homem que sua família precisa.
+                Para se desconectar do mundo, enfrentar seus medos, fortalecer sua fé e se tornar o homem que sua
+                família precisa.
               </div>
             </div>
           </div>
@@ -1261,7 +1314,8 @@
             </div>
             <div class="faq-answer">
               <div class="faq-answer-inner">
-                O movimento começou na Guatemala em 2015 e hoje está presente em mais de 10 países, transformando milhares de vidas.
+                O movimento começou na Guatemala em 2015 e hoje está presente em mais de 10 países, transformando
+                milhares de vidas.
               </div>
             </div>
           </div>
@@ -1272,7 +1326,8 @@
             </div>
             <div class="faq-answer">
               <div class="faq-answer-inner">
-                Para homens de todas as idades (acima de 18 anos) que desejam um desafio real e uma transformação profunda.
+                Para homens de todas as idades (acima de 18 anos) que desejam um desafio real e uma transformação
+                profunda.
               </div>
             </div>
           </div>
@@ -1287,16 +1342,26 @@
       <div class="footer-grid">
         <div class="footer-brand reveal-left">
           <h3>LEGENDÁRIOS <span>PORTO VELHO</span></h3>
-          <p>Transformando homens, famílias e comunidades através de experiências que levam à melhor versão de si mesmo.</p>
+          <p>Transformando homens, famílias e comunidades através de experiências que levam à melhor versão de si mesmo.
+          </p>
           <div class="footer-social">
             <a href="#" aria-label="Instagram">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+              </svg>
             </a>
             <a href="#" aria-label="YouTube">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" />
+              </svg>
             </a>
             <a href="#" aria-label="Facebook">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z" />
+              </svg>
             </a>
           </div>
         </div>
@@ -1337,7 +1402,8 @@
 
   <a href="https://wa.me/5569999407137" class="whatsapp-btn" target="_blank">
     <svg width="34" height="34" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.262 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.66.986 3.288 1.489 4.908 1.49 5.385 0 9.778-4.387 9.78-9.77 0-2.61-1.014-5.059-2.859-6.908C16.581 2.115 14.137.949 11.53.949c-5.384 0-9.78 4.386-9.783 9.771 0 1.905.5 3.754 1.454 5.397L2.174 21.75l5.808-1.522c.002-.001.002 0 0 0zm10.706-7.531c-.279-.14-1.647-.812-1.9-.905-.253-.092-.438-.14-.622.14-.183.279-.711.905-.871 1.09-.16.183-.32.207-.599.068-.28-.14-1.18-.435-2.247-1.39-.83-.74-1.39-1.653-1.553-1.93-.163-.28-.018-.431.122-.57.125-.124.28-.328.42-.492.139-.163.185-.279.28-.464.093-.19.046-.356-.022-.493-.069-.138-.622-1.5-.853-2.053-.224-.541-.47-.468-.644-.477-.168-.008-.36-.01-.553-.01-.193 0-.508.073-.774.359-.266.287-1.016 1.012-1.016 2.47 0 1.457 1.06 2.864 1.208 3.062.149.198 2.086 3.196 5.055 4.479.706.305 1.258.487 1.687.625.71.226 1.357.194 1.868.118.57-.085 1.647-.674 1.88-1.325.234-.653.234-1.213.164-1.326-.07-.113-.26-.18-.54-.32z"/>
+      <path
+        d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.262 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.66.986 3.288 1.489 4.908 1.49 5.385 0 9.778-4.387 9.78-9.77 0-2.61-1.014-5.059-2.859-6.908C16.581 2.115 14.137.949 11.53.949c-5.384 0-9.78 4.386-9.783 9.771 0 1.905.5 3.754 1.454 5.397L2.174 21.75l5.808-1.522c.002-.001.002 0 0 0zm10.706-7.531c-.279-.14-1.647-.812-1.9-.905-.253-.092-.438-.14-.622.14-.183.279-.711.905-.871 1.09-.16.183-.32.207-.599.068-.28-.14-1.18-.435-2.247-1.39-.83-.74-1.39-1.653-1.553-1.93-.163-.28-.018-.431.122-.57.125-.124.28-.328.42-.492.139-.163.185-.279.28-.464.093-.19.046-.356-.022-.493-.069-.138-.622-1.5-.853-2.053-.224-.541-.47-.468-.644-.477-.168-.008-.36-.01-.553-.01-.193 0-.508.073-.774.359-.266.287-1.016 1.012-1.016 2.47 0 1.457 1.06 2.864 1.208 3.062.149.198 2.086 3.196 5.055 4.479.706.305 1.258.487 1.687.625.71.226 1.357.194 1.868.118.57-.085 1.647-.674 1.88-1.325.234-.653.234-1.213.164-1.326-.07-.113-.26-.18-.54-.32z" />
     </svg>
   </a>
 
