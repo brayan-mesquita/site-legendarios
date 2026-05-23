@@ -495,7 +495,10 @@
 
     /* Video Section */
     .video-section {
-      background-color: var(--bg-alt);
+      background: linear-gradient(rgba(26, 12, 4, 0.88), rgba(15, 6, 2, 0.92)), url('backgoround.webp');
+      background-size: cover;
+      background-position: center;
+      border-bottom: 1px solid var(--border);
     }
 
     .video-container {
@@ -560,10 +563,13 @@
 
     /* Events Section */
     .events-section {
-      background-color: var(--accent);
+      background: linear-gradient(rgba(26, 12, 4, 0.88), rgba(15, 6, 2, 0.92)), url('backgoround.webp');
+      background-size: cover;
+      background-position: center;
       position: relative;
       overflow: hidden;
       text-align: center;
+      border-bottom: 1px solid var(--border);
     }
 
     .events-section::before {
@@ -627,27 +633,29 @@
 
     .btn-events-card {
       display: inline-block;
-      background: linear-gradient(135deg, oklch(58% 0.22 30) 0%, oklch(48% 0.22 25) 100%);
+      background-color: var(--accent);
       color: #fff;
-      padding: 16px 32px;
+      padding: 18px 40px;
       font-family: var(--font-display);
       font-weight: 800;
-      font-size: 13px;
+      font-size: 14px;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
-      border-radius: 6px;
-      border: 1px solid oklch(58% 0.22 30 / 30%);
+      letter-spacing: 0.1em;
+      border-radius: 4px;
+      border: none;
       cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
       text-align: center;
     }
 
     .btn-events-card:hover {
-      background: #fff;
+      background-color: #fff;
       color: var(--accent);
       transform: translateY(-3px);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
-      border-color: #fff;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 0 30px rgba(255, 105, 0, 0.3);
+      border-color: transparent;
     }
 
     .btn {
@@ -767,105 +775,7 @@
       line-height: 1.7;
     }
 
-    .cnpj-info {
-      text-align: center;
-      margin-top: 60px;
-      font-size: 12px;
-      color: var(--muted);
-    }
 
-    /* Contact Section */
-    .footer-section {
-      background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('backgoround.webp');
-      background-size: cover;
-      background-position: center;
-      padding: 80px 0;
-      position: relative;
-      border-top: 1px solid var(--border);
-    }
-
-    .contact-card {
-      background: var(--surface);
-      color: var(--fg);
-      border-radius: 16px;
-      display: grid;
-      grid-template-columns: 1fr 1.5fr;
-      overflow: hidden;
-      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
-      border: 1px solid var(--border);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-    }
-
-    .contact-info {
-      padding: 60px;
-      background-color: oklch(18% 0.01 0);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      border-right: 1px solid var(--border);
-    }
-
-    .contact-info h3 {
-      font-size: 32px;
-      margin-bottom: 24px;
-      color: var(--accent);
-    }
-
-    .contact-info p {
-      margin-bottom: 32px;
-      color: var(--muted);
-    }
-
-    .contact-form {
-      padding: 60px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .form-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-
-    .form-group {
-      margin-bottom: 20px;
-    }
-
-    .form-group.full {
-      grid-column: span 2;
-    }
-
-    .form-control {
-      width: 100%;
-      background-color: oklch(14% 0.01 0);
-      border: 1px solid var(--border);
-      padding: 15px;
-      border-radius: 6px;
-      font-family: var(--font-body);
-      font-size: 14px;
-      color: var(--fg);
-      transition: all 0.3s ease;
-    }
-
-    .form-control:focus {
-      outline: none;
-      border-color: var(--accent);
-      background-color: oklch(16% 0.01 0);
-      box-shadow: 0 0 15px var(--accent-glow-strong);
-    }
-
-    textarea.form-control {
-      height: 120px;
-      resize: none;
-    }
-
-    .btn-submit {
-      width: 100%;
-      margin-top: 10px;
-    }
 
     /* Gallery Slider (Infinite Marquee) */
     .gallery-section {
@@ -1302,7 +1212,7 @@
           </div>
           <div class="events-card-content">
             <p>Cadastre-se na lista abaixo e fique por dentro dos próximos eventos da Legendários Porto Velho.</p>
-            <a href="#contato" class="btn-events-card">QUERO SER UM LEGENDÁRIO</a>
+            <a href="https://wa.me/5569999407137" target="_blank" class="btn-events-card">QUERO SER UM LEGENDÁRIO</a>
           </div>
         </div>
       </div>
@@ -1369,51 +1279,6 @@
                 Para homens de todas as idades (acima de 18 anos) que desejam um desafio real e uma transformação profunda.
               </div>
             </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contato" class="footer-section" style="position: relative; overflow: hidden;">
-      <div class="glow-blob glow-1"></div>
-      <div class="container">
-        <div class="contact-card reveal-scale">
-          <div class="contact-info">
-            <h3>FALE CONOSCO</h3>
-            <p>Tem dúvidas sobre o TOP ou quer saber mais sobre os próximos eventos? Deixe sua mensagem e um coordenador dos Legendários entrará em contato.</p>
-            <div style="display: flex; flex-direction: column; gap: 20px; font-weight: 600; font-size: 14px; color: var(--fg); opacity: 0.95;">
-              <div style="display: flex; align-items: center; gap: 12px;">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color: var(--accent);"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                <span>(69) 99940-7137</span>
-              </div>
-              <div style="display: flex; align-items: center; gap: 12px;">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color: var(--accent);"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                <span style="font-size: 13px;">contato@legendariosportovelho.com.br</span>
-              </div>
-            </div>
-          </div>
-          <div class="contact-form">
-            <form id="formContato">
-              <div class="form-grid">
-                <div class="form-group">
-                  <input type="text" id="formNome" class="form-control" placeholder="Seu Nome" required>
-                </div>
-                <div class="form-group">
-                  <input type="tel" id="formWhatsApp" class="form-control" placeholder="WhatsApp (DDD + Número)" required>
-                </div>
-                <div class="form-group full">
-                  <input type="text" id="formCidade" class="form-control" placeholder="Sua Cidade" required>
-                </div>
-                <div class="form-group full">
-                  <textarea id="formMensagem" class="form-control" placeholder="Sua Mensagem / Como conheceu os Legendários?" required></textarea>
-                </div>
-                <div class="form-group full">
-                  <button type="submit" class="btn btn-submit">ENVIAR INTERESSE</button>
-                </div>
-              </div>
-            </form>
           </div>
         </div>
       </div>
@@ -1644,38 +1509,9 @@
   </script>
 
 
-  <script>
-    // Gerenciador de Envio do Formulário de Contato
-    document.addEventListener('DOMContentLoaded', function () {
-      const form = document.getElementById('formContato');
-      if (form) {
-        form.addEventListener('submit', function (event) {
-          event.preventDefault();
-          const btn = form.querySelector('.btn-submit');
-          const originalText = btn.textContent;
-          btn.textContent = 'ENVIANDO...';
-          btn.disabled = true;
 
-          // Simulação de envio com feedback visual de alta fidelidade
-          setTimeout(() => {
-            const card = form.closest('.contact-card');
-            if (card) {
-              card.innerHTML = `
-                <div style="grid-column: span 2; padding: 80px 40px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px; background-color: oklch(18% 0.01 0); animation: fadeIn 0.8s cubic-bezier(0.23, 1, 0.32, 1) both;">
-                  <div style="width: 80px; height: 80px; background-color: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 36px; color: #fff; box-shadow: 0 10px 30px var(--accent-glow-strong); animation: playPulse 2s infinite;">✓</div>
-                  <div>
-                    <h3 style="font-family: var(--font-display); font-size: 28px; font-weight: 900; color: var(--accent); text-transform: uppercase; letter-spacing: -0.01em; margin-bottom: 8px;">Interesse Registrado!</h3>
-                    <p style="color: var(--muted); font-size: 16px; max-width: 500px; margin: 0 auto; line-height: 1.6; font-family: var(--font-body);">Obrigado por seu posicionamento, guerreiro. Suas informações foram recebidas. Um coordenador do movimento Legendários Porto Velho entrará em contato em breve via WhatsApp.</p>
-                  </div>
-                </div>
-              `;
-            }
-          }, 1500);
-        });
-      }
-    });
 
-    // Gerenciador do Reprodutor de Vídeo In-Place
+    // Gerenciador do Reprodutor de Vídeo In-Place com Nocookie e Referrer Policy para resolver o Erro 153
     document.addEventListener('DOMContentLoaded', function () {
       const videoContainer = document.querySelector('.video-container');
       const videoPlaceholder = document.querySelector('.video-placeholder');
@@ -1683,12 +1519,13 @@
       if (videoContainer && videoPlaceholder) {
         videoPlaceholder.addEventListener('click', (e) => {
           e.stopPropagation();
-          // Substitui o placeholder pelo iframe do YouTube em tempo de execução para reprodução direta in-place
+          // Substitui o placeholder pelo iframe seguro do YouTube para evitar o bloqueio de reprodução (Erro 153)
           videoContainer.innerHTML = `
-            <iframe src="https://www.youtube.com/embed/kf4Ei-RVN_w?autoplay=1&mute=0&rel=0" 
+            <iframe src="https://www.youtube-nocookie.com/embed/kf4Ei-RVN_w?autoplay=1&mute=0&rel=0" 
               frameborder="0" 
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
               allowfullscreen 
+              referrerpolicy="strict-origin-when-cross-origin"
               style="width: 100%; height: 100%; border: none; border-radius: 12px; display: block;">
             </iframe>
           `;
