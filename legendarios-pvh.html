@@ -257,6 +257,28 @@
       overflow: hidden;
     }
 
+    .hero-video-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85));
+      z-index: 1;
+      pointer-events: none;
+    }
+
     .hero::before {
       content: '';
       position: absolute;
@@ -268,6 +290,7 @@
                   radial-gradient(circle at 70% 80%, rgba(255, 183, 0, 0.05) 0%, transparent 40%);
       animation: heroGradient 15s ease infinite alternate;
       pointer-events: none;
+      z-index: 1;
     }
 
     @keyframes heroGradient {
@@ -284,12 +307,12 @@
       width: 100%;
       height: 100%;
       pointer-events: none;
-      z-index: 1;
+      z-index: 2;
     }
 
     .hero .container {
       position: relative;
-      z-index: 2;
+      z-index: 3;
     }
 
     .hero-logo {
@@ -1176,6 +1199,11 @@
 
   <main>
     <section class="hero">
+      <div class="hero-overlay"></div>
+      <video autoplay muted loop playsinline class="hero-video-bg">
+        <source src="video-fundo-secao-hero.webm" type="video/webm">
+        <source src="video-fundo-secao-hero.mp4" type="video/mp4">
+      </video>
       <canvas id="particles-canvas"></canvas>
       <div class="container">
         <h1 class="reveal"><span class="text-gradient">Vidas com histórias</span> dignas de serem contadas.</h1>
