@@ -1,0 +1,1511 @@
+<!doctype html>
+<html lang="pt-BR" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Legendários - Porto Velho, RO</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700;800;900&display=swap"
+    rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #000000;
+      --bg-alt: #0a0a0a;
+      --surface: #1a1a1a;
+      --fg: #ffffff;
+      --muted: #a0a0a0;
+      --accent: #f15a24;
+      --accent-hover: #d1491a;
+
+      --font-display: 'Montserrat', sans-serif;
+      --font-body: 'Inter', sans-serif;
+
+      --container-max: 1200px;
+      --section-padding: 100px 0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--fg);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: var(--font-display);
+      text-transform: uppercase;
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    .container {
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Scroll Progress Bar */
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), #ffb700);
+      z-index: 9999;
+      width: 0%;
+      transition: width 0.1s linear;
+    }
+
+    /* Topbar */
+    .topbar {
+      background-color: var(--accent);
+      color: #000;
+      padding: 8px 0;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      position: relative;
+      z-index: 101;
+    }
+
+    /* Header */
+    header {
+      background-color: rgba(0, 0, 0, 0.9);
+      backdrop-filter: blur(10px);
+      padding: 16px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all 0.3s ease;
+    }
+
+    header.scrolled {
+      padding: 10px 0;
+      background-color: rgba(0, 0, 0, 0.95);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    header.scrolled .header-logo img {
+      height: 45px;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header-logo img {
+      height: 60px;
+      width: auto;
+      transition: height 0.3s ease;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--fg);
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      padding: 120px 0 80px;
+      text-align: center;
+      background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('background-hero.jpg');
+      background-size: cover;
+      background-position: center;
+      min-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 30% 50%, rgba(241, 90, 36, 0.08) 0%, transparent 50%),
+                  radial-gradient(circle at 70% 80%, rgba(255, 183, 0, 0.05) 0%, transparent 40%);
+      animation: heroGradient 15s ease infinite alternate;
+      pointer-events: none;
+    }
+
+    @keyframes heroGradient {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      33% { transform: translate(2%, -2%) rotate(3deg); }
+      66% { transform: translate(-1%, 3%) rotate(-2deg); }
+      100% { transform: translate(1%, -1%) rotate(1deg); }
+    }
+
+    #particles-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .hero .container {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-logo {
+      width: 180px;
+      margin-bottom: 40px;
+    }
+
+    .hero h1 {
+      font-size: clamp(32px, 8vw, 64px);
+      max-width: 900px;
+      margin-bottom: 24px;
+    }
+
+    .text-gradient {
+      background: linear-gradient(135deg, var(--accent) 0%, #ffb700 50%, #fff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: var(--muted);
+      margin-bottom: 48px;
+    }
+
+    .scroll-indicator {
+      margin-top: 60px;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+
+      0%,
+      20%,
+      50%,
+      80%,
+      100% {
+        transform: translateY(0);
+      }
+
+      40% {
+        transform: translateY(-10px);
+      }
+
+      60% {
+        transform: translateY(-5px);
+      }
+    }
+
+    /* Sections */
+    section {
+      padding: var(--section-padding);
+    }
+
+    .section-title {
+      margin-bottom: 48px;
+    }
+
+    .section-title h2 {
+      font-size: clamp(32px, 5vw, 48px);
+    }
+
+    .section-title h2 span {
+      color: var(--accent);
+    }
+
+    /* Section Dividers */
+    .section-divider {
+      position: relative;
+      height: 60px;
+      overflow: hidden;
+    }
+
+    .section-divider svg {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 60px;
+    }
+
+    /* Scroll Reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1),
+                  transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-60px);
+      transition: opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1),
+                  transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .reveal-left.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(60px);
+      transition: opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1),
+                  transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .reveal-right.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .reveal-scale {
+      opacity: 0;
+      transform: scale(0.9);
+      transition: opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1),
+                  transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .reveal-scale.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Image Reveal */
+    .image-reveal {
+      clip-path: inset(0 100% 0 0);
+      transition: clip-path 1s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .image-reveal.visible {
+      clip-path: inset(0 0 0 0);
+    }
+
+    /* About Section */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .about-content p {
+      margin-bottom: 24px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .about-images {
+      display: block;
+    }
+
+    .about-images img {
+      width: 85%;
+      max-width: 450px;
+      margin: 0 auto;
+      display: block;
+      height: auto;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 4px solid #000;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      transition: all 0.5s ease;
+    }
+
+    .about-images img:hover {
+      transform: scale(1.02);
+    }
+
+    /* Stats Section */
+    .stats-section {
+      background: linear-gradient(135deg, var(--bg-alt) 0%, var(--surface) 100%);
+      padding: 80px 0;
+      position: relative;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+      text-align: center;
+    }
+
+    .stat-item {
+      padding: 30px 20px;
+    }
+
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 5vw, 56px);
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--accent), #ffb700);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-size: 14px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+    }
+
+    /* Video Section */
+    .video-section {
+      background-color: var(--bg-alt);
+    }
+
+    .video-container {
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+      aspect-ratio: 16/9;
+      background-color: #111;
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .video-container:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 30px 60px rgba(241, 90, 36, 0.15);
+    }
+
+    .video-placeholder {
+      width: 100%;
+      height: 100%;
+      background-image: url('https://images.unsplash.com/photo-1501555088652-021faa106b9b?auto=format&fit=crop&q=80&w=1200');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .play-button {
+      width: 80px;
+      height: 80px;
+      background-color: var(--accent);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+      color: #fff;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 0 0 rgba(241, 90, 36, 0.4);
+      animation: playPulse 2s infinite;
+    }
+
+    @keyframes playPulse {
+      0% { box-shadow: 0 0 0 0 rgba(241, 90, 36, 0.4); }
+      70% { box-shadow: 0 0 0 20px rgba(241, 90, 36, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(241, 90, 36, 0); }
+    }
+
+    .video-placeholder:hover .play-button {
+      transform: scale(1.1);
+      background-color: #fff;
+      color: var(--accent);
+    }
+
+    /* Events Section */
+    .events-section {
+      background-color: var(--bg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .events-section::before {
+      content: 'AHU AHU AHU';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-5deg);
+      font-family: var(--font-display);
+      font-size: 15vw;
+      font-weight: 900;
+      color: rgba(255, 255, 255, 0.02);
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    .events-card {
+      background-color: var(--accent);
+      color: #000;
+      padding: 60px;
+      border-radius: 12px;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease;
+    }
+
+    .events-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .events-card h3 {
+      font-size: 32px;
+      margin-bottom: 16px;
+      color: #000;
+    }
+
+    .events-card p {
+      color: rgba(0, 0, 0, 0.8);
+      margin-bottom: 40px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      font-weight: 500;
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: var(--accent);
+      color: #fff;
+      padding: 18px 40px;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .btn:hover::before {
+      left: 100%;
+    }
+
+    .btn:hover {
+      background-color: #fff;
+      color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 0 30px rgba(241, 90, 36, 0.3);
+    }
+
+    /* FAQ Section */
+    .faq-section {
+      background-color: var(--bg);
+    }
+
+    .faq-list {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      background: linear-gradient(135deg, var(--bg-alt) 0%, rgba(26, 26, 26, 0.8) 100%);
+      margin-bottom: 16px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .faq-item:hover {
+      border-color: rgba(241, 90, 36, 0.2);
+    }
+
+    .faq-item.active {
+      border-color: rgba(241, 90, 36, 0.3);
+      box-shadow: 0 10px 30px rgba(241, 90, 36, 0.1);
+    }
+
+    .faq-question {
+      padding: 20px 24px;
+      font-family: var(--font-display);
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 14px;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+      transition: color 0.3s ease;
+    }
+
+    .faq-question:hover {
+      color: var(--accent);
+    }
+
+    .faq-icon {
+      font-size: 20px;
+      color: var(--accent);
+      transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+    }
+
+    .faq-item.active .faq-icon {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+                  padding 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .faq-answer-inner {
+      padding: 0 24px 24px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .cnpj-info {
+      text-align: center;
+      margin-top: 60px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* Contact Section / Footer */
+    .footer-section {
+      background-color: var(--accent);
+      padding: 80px 0;
+      position: relative;
+    }
+
+    .contact-card {
+      background-color: #fff;
+      color: #000;
+      border-radius: 12px;
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      overflow: hidden;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+    }
+
+    .contact-info {
+      padding: 60px;
+      background-color: #f8f8f8;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .contact-info h3 {
+      font-size: 36px;
+      margin-bottom: 24px;
+    }
+
+    .contact-info p {
+      margin-bottom: 32px;
+      color: #555;
+    }
+
+    .contact-form {
+      padding: 60px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group.full {
+      grid-column: span 2;
+    }
+
+    .form-control {
+      width: 100%;
+      background-color: #eee;
+      border: 1px solid transparent;
+      padding: 15px;
+      border-radius: 4px;
+      font-family: var(--font-body);
+      font-size: 14px;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--accent);
+      background-color: #fff;
+    }
+
+    textarea.form-control {
+      height: 120px;
+      resize: none;
+    }
+
+    .btn-submit {
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    /* Gallery Slider (Infinite Marquee) */
+    .gallery-section {
+      background-color: var(--surface);
+      color: var(--fg);
+      overflow: hidden;
+      padding: 100px 0;
+    }
+
+    .gallery-marquee {
+      display: flex;
+      width: fit-content;
+      animation: marquee 60s linear infinite;
+    }
+
+    .gallery-marquee:hover {
+      animation-play-state: paused;
+    }
+
+    .gallery-item {
+      flex: 0 0 400px;
+      margin-right: 20px;
+      border-radius: 8px;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      position: relative;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(0.6) brightness(0.8);
+      transition: all 0.6s ease;
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.05) translateY(-10px);
+      border-color: var(--accent);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      z-index: 10;
+    }
+
+    .gallery-item:hover img {
+      filter: grayscale(0) brightness(1.1);
+      transform: scale(1.1);
+    }
+
+    @keyframes marquee {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(calc(-420px * 6));
+      }
+    }
+
+    @media (max-width: 768px) {
+      .gallery-item {
+        flex: 0 0 300px;
+      }
+
+      @keyframes marquee {
+        0% {
+          transform: translateX(0);
+        }
+
+        100% {
+          transform: translateX(calc(-320px * 6));
+        }
+      }
+    }
+
+    /* WhatsApp Button */
+    .whatsapp-btn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      background-color: #25d366;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      font-size: 30px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+      animation: whatsappPulse 2s infinite;
+    }
+
+    @keyframes whatsappPulse {
+      0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+      70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+    }
+
+    .whatsapp-btn:hover {
+      transform: scale(1.1);
+      animation: none;
+    }
+
+    /* Footer */
+    .footer-rich {
+      background: linear-gradient(180deg, var(--bg) 0%, #0a0a0a 100%);
+      padding: 80px 0 40px;
+      position: relative;
+    }
+
+    .footer-rich::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 60px;
+      margin-bottom: 60px;
+    }
+
+    .footer-brand h3 {
+      font-size: 24px;
+      margin-bottom: 16px;
+    }
+
+    .footer-brand h3 span {
+      color: var(--accent);
+    }
+
+    .footer-brand p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.8;
+      max-width: 300px;
+    }
+
+    .footer-col h4 {
+      font-size: 14px;
+      margin-bottom: 20px;
+      color: var(--accent);
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 12px;
+    }
+
+    .footer-col ul li a {
+      color: var(--muted);
+      font-size: 14px;
+      transition: color 0.3s ease, padding-left 0.3s ease;
+    }
+
+    .footer-col ul li a:hover {
+      color: var(--fg);
+      padding-left: 5px;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .footer-social a {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .footer-social a:hover {
+      background: var(--accent);
+      transform: translateY(-3px);
+    }
+
+    .footer-bottom {
+      padding-top: 40px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      text-align: center;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+
+      .about-grid,
+      .contact-card {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-info {
+        padding: 40px;
+        text-align: center;
+      }
+
+      .contact-form {
+        padding: 40px;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-group.full {
+        grid-column: span 1;
+      }
+
+      .events-card {
+        padding: 30px;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <div class="topbar">
+    Track Destemidos Pioneiros
+  </div>
+
+  <header id="mainHeader">
+    <div class="container nav-container">
+      <div class="header-logo">
+        <a href="#">
+          <img src="logo.png" alt="Legendários Porto Velho">
+        </a>
+      </div>
+      <nav class="nav-links">
+        <a href="#">Home</a>
+        <a href="#sobre">O Movimento</a>
+        <a href="#video">Experiência</a>
+        <a href="#eventos">Eventos</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <canvas id="particles-canvas"></canvas>
+      <div class="container">
+        <h1 class="reveal"><span class="text-gradient">Vidas com histórias</span> dignas de serem contadas.</h1>
+        <p class="reveal" style="transition-delay: 0.2s;">Venha escrever a sua.</p>
+        <div class="scroll-indicator reveal" style="transition-delay: 0.4s;">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent);">
+            <path d="M7 13l5 5 5-5M7 6l5 5 5-5" />
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section id="sobre" class="about"
+      style="background-color: var(--accent); color: #000; position: relative; overflow: hidden;">
+      <div class="container about-grid">
+        <div class="about-content reveal-left">
+          <div class="section-title">
+            <h2 style="color: #000;">SOBRE OS <span style="color: #fff;">LEGENDÁRIOS</span></h2>
+          </div>
+          <p style="color: rgba(0,0,0,0.8); font-weight: 500;">Legendários é um movimento que procura a transformação
+            dos homens, famílias e comunidades através de experiências que levam aos homens encontrar a melhor versão de
+            si mesmo, se conectando com Legendário número 1, Jesus Cristo, e alcançar um novo potencial, novo nível de
+            amor, honra e unidade.</p>
+          <p style="color: rgba(0,0,0,0.8); font-weight: 500;">Trazer de volta o herói caçador para cada família, é um
+            propósito que temos como Legendários que tem levado a formar homens inquebráveis diante do pecado, porém
+            quebrantados diante de Deus.</p>
+        </div>
+        <div class="about-images reveal-right">
+          <img src="legendarios_mata.webp" alt="Legendários na Mata" class="image-reveal">
+        </div>
+      </div>
+    </section>
+
+    <section class="stats-section">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-item reveal" style="transition-delay: 0s;">
+            <div class="stat-number" data-target="10">0</div>
+            <div class="stat-label">Países</div>
+          </div>
+          <div class="stat-item reveal" style="transition-delay: 0.1s;">
+            <div class="stat-number" data-target="5000">0</div>
+            <div class="stat-label">Homens Transformados</div>
+          </div>
+          <div class="stat-item reveal" style="transition-delay: 0.2s;">
+            <div class="stat-number" data-target="200">0</div>
+            <div class="stat-label">TOPs Realizados</div>
+          </div>
+          <div class="stat-item reveal" style="transition-delay: 0.3s;">
+            <div class="stat-number" data-target="2015">0</div>
+            <div class="stat-label">Desde</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="video" class="video-section">
+      <div class="container">
+        <div class="section-title reveal" style="text-align: center;">
+          <h2>EXPERIMENTE O <span>TOP</span></h2>
+        </div>
+        <div class="video-container reveal-scale">
+          <div class="video-placeholder">
+            <div class="play-button">▶</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="galeria" class="gallery-section">
+      <div class="container">
+        <div class="section-title reveal" style="text-align: center;">
+          <h2>NOSSA <span>JORNADA</span></h2>
+        </div>
+      </div>
+      <div class="gallery-marquee" id="galleryMarquee">
+        <div class="gallery-item"><img
+            src="https://images.unsplash.com/photo-1464207687429-750564f3ac85?auto=format&fit=crop&w=600" alt="Galeria">
+        </div>
+        <div class="gallery-item"><img
+            src="https://images.unsplash.com/photo-1501555088652-021faa106b9b?auto=format&fit=crop&w=600" alt="Galeria">
+        </div>
+        <div class="gallery-item"><img
+            src="https://images.unsplash.com/photo-1517601278517-85b46610b754?auto=format&fit=crop&w=600" alt="Galeria">
+        </div>
+        <div class="gallery-item"><img
+            src="https://images.unsplash.com/photo-1525026198548-4baa0d2f15eb?auto=format&fit=crop&w=600" alt="Galeria">
+        </div>
+        <div class="gallery-item"><img
+            src="https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?auto=format&fit=crop&w=600" alt="Galeria">
+        </div>
+        <div class="gallery-item"><img
+            src="https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=600" alt="Galeria">
+        </div>
+        <div class="gallery-item"><img
+            src="https://images.unsplash.com/photo-1464207687429-750564f3ac85?auto=format&fit=crop&w=600" alt="Galeria">
+        </div>
+        <div class="gallery-item"><img
+            src="https://images.unsplash.com/photo-1501555088652-021faa106b9b?auto=format&fit=crop&w=600" alt="Galeria">
+        </div>
+        <div class="gallery-item"><img
+            src="https://images.unsplash.com/photo-1517601278517-85b46610b754?auto=format&fit=crop&w=600" alt="Galeria">
+        </div>
+        <div class="gallery-item"><img
+            src="https://images.unsplash.com/photo-1525026198548-4baa0d2f15eb?auto=format&fit=crop&w=600" alt="Galeria">
+        </div>
+        <div class="gallery-item"><img
+            src="https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?auto=format&fit=crop&w=600" alt="Galeria">
+        </div>
+        <div class="gallery-item"><img
+            src="https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=600" alt="Galeria">
+        </div>
+      </div>
+    </section>
+
+    <script>
+      async function loadGallery() {
+        const marquee = document.getElementById('galleryMarquee');
+        const maxPhotos = 20;
+        let photosFound = [];
+
+        for (let i = 1; i <= maxPhotos; i++) {
+          const imgUrl = `galeria/foto${i}.jpg`;
+          try {
+            const response = await fetch(imgUrl, { method: 'HEAD' });
+            if (response.ok) {
+              photosFound.push(imgUrl);
+            }
+          } catch (e) { }
+        }
+
+        if (photosFound.length > 0) {
+          marquee.innerHTML = '';
+          photosFound.forEach(src => {
+            const item = document.createElement('div');
+            item.className = 'gallery-item';
+            item.innerHTML = `<img src="${src}" alt="Legendários Porto Velho">`;
+            marquee.appendChild(item);
+          });
+          photosFound.forEach(src => {
+            const item = document.createElement('div');
+            item.className = 'gallery-item';
+            item.innerHTML = `<img src="${src}" alt="Legendários Porto Velho">`;
+            marquee.appendChild(item);
+          });
+
+          const itemWidth = window.innerWidth > 768 ? 420 : 320;
+          const totalWidth = itemWidth * photosFound.length;
+          const style = document.createElement('style');
+          style.innerHTML = `
+            @keyframes marquee {
+              0% { transform: translateX(0); }
+              100% { transform: translateX(-${totalWidth}px); }
+            }
+          `;
+          document.head.appendChild(style);
+        }
+      }
+      window.addEventListener('DOMContentLoaded', loadGallery);
+    </script>
+
+    <section id="eventos" class="events-section">
+      <div class="container">
+        <div class="events-card reveal-scale">
+          <div class="section-title">
+            <h2 style="color: #000;">LISTA DE <span style="color: #fff;">INTERESSADOS</span></h2>
+          </div>
+          <p>Não existem eventos disponíveis no momento! Fale conosco pelo WhatsApp para saber dos próximos eventos da Legendários Porto Velho.</p>
+          <a href="https://wa.me/5569000000000" class="btn" target="_blank" style="background-color: #000; color: #fff;">QUERO SER UM LEGENDÁRIO</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="faq-section">
+      <div class="container">
+        <div class="section-title reveal" style="text-align: center;">
+          <h2>PERGUNTAS <span>FREQUENTES</span></h2>
+        </div>
+        <div class="faq-list">
+          <div class="faq-item reveal" style="transition-delay: 0s;">
+            <div class="faq-question">
+              QUEM SÃO OS LEGENDÁRIOS?
+              <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Um movimento global de homens que buscam sua melhor versão através de desafios físicos, mentais e espirituais.
+              </div>
+            </div>
+          </div>
+          <div class="faq-item reveal" style="transition-delay: 0.1s;">
+            <div class="faq-question">
+              O QUE É UM TOP?
+              <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                O TOP (Treinamento de Oração e Preparação) é uma experiência de 72 horas de imersão total na natureza e em desafios.
+              </div>
+            </div>
+          </div>
+          <div class="faq-item reveal" style="transition-delay: 0.2s;">
+            <div class="faq-question">
+              POR QUE EU DEVO IR AO TOP?
+              <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Para se desconectar do mundo, enfrentar seus medos, fortalecer sua fé e se tornar o homem que sua família precisa.
+              </div>
+            </div>
+          </div>
+          <div class="faq-item reveal" style="transition-delay: 0.3s;">
+            <div class="faq-question">
+              COMO TUDO COMEÇOU?
+              <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                O movimento começou na Guatemala em 2015 e hoje está presente em mais de 10 países, transformando milhares de vidas.
+              </div>
+            </div>
+          </div>
+          <div class="faq-item reveal" style="transition-delay: 0.4s;">
+            <div class="faq-question">
+              PARA QUEM É O TOP?
+              <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Para homens de todas as idades (acima de 18 anos) que desejam um desafio real e uma transformação profunda.
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+  </main>
+
+  <footer class="footer-rich">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand reveal-left">
+          <h3>LEGENDÁRIOS <span>PORTO VELHO</span></h3>
+          <p>Transformando homens, famílias e comunidades através de experiências que levam à melhor versão de si mesmo.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="#" aria-label="YouTube">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+            </a>
+            <a href="#" aria-label="Facebook">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-col reveal" style="transition-delay: 0.1s;">
+          <h4>NAVEGAÇÃO</h4>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#sobre">O Movimento</a></li>
+            <li><a href="#video">Experiência</a></li>
+            <li><a href="#eventos">Eventos</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-col reveal" style="transition-delay: 0.2s;">
+          <h4>MOVIMENTO</h4>
+          <ul>
+            <li><a href="#">Sobre Nós</a></li>
+            <li><a href="#">TOP</a></li>
+            <li><a href="#">Testemunhos</a></li>
+            <li><a href="#">Galeria</a></li>
+          </ul>
+        </div>
+        <div class="footer-col reveal" style="transition-delay: 0.3s;">
+          <h4>CONTATO</h4>
+          <ul>
+            <li><a href="https://wa.me/5569000000000" target="_blank">WhatsApp</a></li>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">Email</a></li>
+            <li><a href="#">Porto Velho, RO</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Legendários Porto Velho. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/5569000000000" class="whatsapp-btn" target="_blank">
+    <svg width="34" height="34" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.262 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.66.986 3.288 1.489 4.908 1.49 5.385 0 9.778-4.387 9.78-9.77 0-2.61-1.014-5.059-2.859-6.908C16.581 2.115 14.137.949 11.53.949c-5.384 0-9.78 4.386-9.783 9.771 0 1.905.5 3.754 1.454 5.397L2.174 21.75l5.808-1.522c.002-.001.002 0 0 0zm10.706-7.531c-.279-.14-1.647-.812-1.9-.905-.253-.092-.438-.14-.622.14-.183.279-.711.905-.871 1.09-.16.183-.32.207-.599.068-.28-.14-1.18-.435-2.247-1.39-.83-.74-1.39-1.653-1.553-1.93-.163-.28-.018-.431.122-.57.125-.124.28-.328.42-.492.139-.163.185-.279.28-.464.093-.19.046-.356-.022-.493-.069-.138-.622-1.5-.853-2.053-.224-.541-.47-.468-.644-.477-.168-.008-.36-.01-.553-.01-.193 0-.508.073-.774.359-.266.287-1.016 1.012-1.016 2.47 0 1.457 1.06 2.864 1.208 3.062.149.198 2.086 3.196 5.055 4.479.706.305 1.258.487 1.687.625.71.226 1.357.194 1.868.118.57-.085 1.647-.674 1.88-1.325.234-.653.234-1.213.164-1.326-.07-.113-.26-.18-.54-.32z"/>
+    </svg>
+  </a>
+
+  <script>
+    (function () {
+      const canvas = document.getElementById('particles-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let particles = [];
+      const isMobile = window.innerWidth < 768;
+      const count = isMobile ? 25 : 60;
+      const colors = ['#f15a24', '#ff7b00', '#ffb700', '#ffffff'];
+
+      function resize() {
+        const hero = canvas.parentElement;
+        canvas.width = hero.offsetWidth;
+        canvas.height = hero.offsetHeight;
+      }
+
+      class Particle {
+        constructor() { this.reset(true); }
+        reset(init = false) {
+          this.x = Math.random() * canvas.width;
+          this.y = init ? Math.random() * canvas.height : canvas.height + 10;
+          this.size = Math.random() * 2.5 + 0.5;
+          this.speedY = Math.random() * 1.2 + 0.4;
+          this.drift = (Math.random() - 0.5) * 0.8;
+          this.opacity = Math.random() * 0.7 + 0.3;
+          this.color = colors[Math.floor(Math.random() * colors.length)];
+          this.decay = Math.random() * 0.004 + 0.001;
+          this.wobble = Math.random() * Math.PI * 2;
+          this.wobbleSpeed = Math.random() * 0.02 + 0.01;
+        }
+        update() {
+          this.wobble += this.wobbleSpeed;
+          this.y -= this.speedY;
+          this.x += this.drift + Math.sin(this.wobble) * 0.5;
+          this.opacity -= this.decay;
+          if (this.opacity <= 0 || this.y < -10) this.reset();
+        }
+        draw() {
+          ctx.save();
+          ctx.globalAlpha = this.opacity;
+          ctx.fillStyle = this.color;
+          ctx.shadowBlur = 8;
+          ctx.shadowColor = this.color;
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.restore();
+        }
+      }
+
+      function init() {
+        resize();
+        particles = Array.from({ length: count }, () => new Particle());
+        animate();
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => { p.update(); p.draw(); });
+        requestAnimationFrame(animate);
+      }
+
+      window.addEventListener('resize', resize);
+      window.addEventListener('DOMContentLoaded', init);
+    })();
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const faqItems = document.querySelectorAll('.faq-item');
+
+      faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        const answer = item.querySelector('.faq-answer');
+        const answerInner = item.querySelector('.faq-answer-inner');
+
+        question.addEventListener('click', () => {
+          const isOpen = item.classList.contains('active');
+
+          faqItems.forEach(otherItem => {
+            const otherAnswer = otherItem.querySelector('.faq-answer');
+            otherItem.classList.remove('active');
+            otherAnswer.style.maxHeight = '0';
+          });
+
+          if (!isOpen) {
+            item.classList.add('active');
+            answer.style.maxHeight = answerInner.scrollHeight + 24 + 'px';
+          }
+        });
+      });
+    });
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .image-reveal');
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      });
+
+      reveals.forEach(el => observer.observe(el));
+    });
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const header = document.getElementById('mainHeader');
+      const scrollProgress = document.getElementById('scrollProgress');
+
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPercent = (scrollTop / docHeight) * 100;
+        scrollProgress.style.width = scrollPercent + '%';
+      });
+    });
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const counters = document.querySelectorAll('.stat-number');
+      let animated = false;
+
+      function animateCounters() {
+        if (animated) return;
+
+        const statsSection = document.querySelector('.stats-section');
+        const rect = statsSection.getBoundingClientRect();
+
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          animated = true;
+
+          counters.forEach(counter => {
+            const target = parseInt(counter.getAttribute('data-target'));
+            const duration = 2000;
+            const step = target / (duration / 16);
+            let current = 0;
+
+            const updateCounter = () => {
+              current += step;
+              if (current < target) {
+                counter.textContent = Math.floor(current).toLocaleString('pt-BR');
+                requestAnimationFrame(updateCounter);
+              } else {
+                counter.textContent = target.toLocaleString('pt-BR');
+              }
+            };
+
+            updateCounter();
+          });
+        }
+      }
+
+      window.addEventListener('scroll', animateCounters);
+      animateCounters();
+    });
+  </script>
+
+</body>
+
+</html>
