@@ -822,7 +822,7 @@
     .gallery-container-relative {
       position: relative;
       width: 100%;
-      max-width: 1200px;
+      max-width: 1400px; /* Increased from 1200px to allow more room for pictures */
       margin: 0 auto;
       padding: 0 40px; /* Space for desktop navigation arrows */
     }
@@ -853,8 +853,15 @@
       scroll-behavior: auto; /* Faster update when dragging */
     }
 
+    .gallery-marquee {
+      display: flex;
+      gap: 20px;
+      width: 100%;
+      flex-shrink: 0;
+    }
+
     .gallery-item {
-      flex: 0 0 400px;
+      flex: 0 0 calc(25% - 15px); /* Default for wide screens: 4 images visible */
       border-radius: 8px;
       overflow: hidden;
       aspect-ratio: 4/3;
@@ -886,9 +893,21 @@
       transform: scale(1.1);
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 1200px) {
       .gallery-item {
-        flex: 0 0 300px;
+        flex: 0 0 calc(33.333% - 13.33px); /* 3 images visible */
+      }
+    }
+
+    @media (max-width: 992px) {
+      .gallery-item {
+        flex: 0 0 calc(50% - 10px); /* 2 images visible */
+      }
+    }
+
+    @media (max-width: 600px) {
+      .gallery-item {
+        flex: 0 0 280px; /* Fluid preview scrollable on mobile */
       }
     }
 
@@ -1129,7 +1148,7 @@
       left: 0;
       right: 0;
       height: 1px;
-      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      background: rgba(255, 255, 255, 0.08);
     }
 
     .footer-grid {
@@ -1534,6 +1553,7 @@
           </div>
         </div>
       </div>
+    </section>
     <section id="galeria" class="gallery-section">
       <div class="container">
         <div class="section-title reveal" style="text-align: center;">
@@ -1548,7 +1568,7 @@
 
         <!-- Draggable Wrapper -->
         <div class="gallery-wrapper" id="galleryWrapper">
-          <div class="gallery-marquee" id="galleryMarquee" style="display: flex; gap: 20px; width: max-content;">
+          <div class="gallery-marquee" id="galleryMarquee">
             <!-- Images will be rendered dynamically here -->
           </div>
         </div>
@@ -1567,6 +1587,12 @@
         const nextBtn = document.getElementById('galleryNext');
         
         let photosFound = [];
+
+        // Calculate dynamic item width based on the rendered element width + gap
+        const getItemWidth = () => {
+          const firstItem = wrapper.querySelector('.gallery-item');
+          return firstItem ? firstItem.offsetWidth + 20 : (window.innerWidth > 768 ? 420 : 320);
+        };
 
         // Static fallback photos
         const fallbackPhotos = [
@@ -1628,7 +1654,7 @@
             dot.className = `gallery-dot ${index === 0 ? 'active' : ''}`;
             dot.addEventListener('click', () => {
               stopAutoplay();
-              const itemWidth = window.innerWidth > 768 ? 420 : 320;
+              const itemWidth = getItemWidth();
               wrapper.scrollTo({
                 left: index * itemWidth,
                 behavior: 'smooth'
@@ -1638,9 +1664,6 @@
             });
             dotsContainer.appendChild(dot);
           });
-
-          // Horizontal scroll measurements
-          const getItemWidth = () => window.innerWidth > 768 ? 420 : 320;
 
           // Update active dot on scroll
           let scrollTimeout;
