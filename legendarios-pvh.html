@@ -811,7 +811,7 @@
 
 
 
-    /* Gallery Slider (Infinite Marquee) */
+    /* Gallery Section & Slider Controls */
     .gallery-section {
       background-color: var(--surface);
       color: var(--fg);
@@ -819,25 +819,50 @@
       padding: 100px 0;
     }
 
-    .gallery-marquee {
-      display: flex;
-      width: fit-content;
-      animation: marquee 60s linear infinite;
+    .gallery-container-relative {
+      position: relative;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px; /* Space for desktop navigation arrows */
     }
 
-    .gallery-marquee:hover {
-      animation-play-state: paused;
+    @media (max-width: 768px) {
+      .gallery-container-relative {
+        padding: 0 15px; /* Fit closer on mobile */
+      }
+    }
+
+    .gallery-wrapper {
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none;  /* IE and Edge */
+      cursor: grab;
+      display: flex;
+      gap: 20px;
+      padding: 20px 0;
+    }
+
+    .gallery-wrapper::-webkit-scrollbar {
+      display: none; /* Chrome, Safari, Opera */
+    }
+
+    .gallery-wrapper.active {
+      cursor: grabbing;
+      scroll-behavior: auto; /* Faster update when dragging */
     }
 
     .gallery-item {
       flex: 0 0 400px;
-      margin-right: 20px;
       border-radius: 8px;
       overflow: hidden;
       aspect-ratio: 4/3;
       position: relative;
       border: 1px solid rgba(255, 255, 255, 0.05);
       transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+      user-select: none;
+      cursor: pointer;
     }
 
     .gallery-item img {
@@ -846,6 +871,7 @@
       object-fit: cover;
       filter: grayscale(0.6) brightness(0.8);
       transition: all 0.6s ease;
+      pointer-events: none; /* Disable standard drag behavior */
     }
 
     .gallery-item:hover {
@@ -860,30 +886,195 @@
       transform: scale(1.1);
     }
 
-    @keyframes marquee {
-      0% {
-        transform: translateX(0);
-      }
-
-      100% {
-        transform: translateX(calc(-420px * 6));
-      }
-    }
-
     @media (max-width: 768px) {
       .gallery-item {
         flex: 0 0 300px;
       }
+    }
 
-      @keyframes marquee {
-        0% {
-          transform: translateX(0);
-        }
+    /* Carousel Nav Buttons */
+    .gallery-nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 50px;
+      height: 50px;
+      background: rgba(0, 0, 0, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      color: white;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(5px);
+      user-select: none;
+    }
 
-        100% {
-          transform: translateX(calc(-320px * 6));
-        }
+    .gallery-nav-btn:hover {
+      background: var(--accent); /* #ff6900 */
+      border-color: var(--accent);
+      box-shadow: 0 0 15px rgba(255, 105, 0, 0.4);
+    }
+
+    .gallery-nav-prev { left: -10px; }
+    .gallery-nav-next { right: -10px; }
+
+    @media (max-width: 768px) {
+      .gallery-nav-btn {
+        display: none; /* Swipe is native on mobile */
       }
+    }
+
+    /* Dots Indicator */
+    .gallery-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 30px;
+    }
+
+    .gallery-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .gallery-dot.active {
+      background: var(--accent);
+      transform: scale(1.2);
+      width: 20px;
+      border-radius: 4px;
+    }
+
+    /* Fullscreen Lightbox Modal */
+    .lightbox-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(10, 10, 10, 0.95);
+      backdrop-filter: blur(15px);
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .lightbox-modal.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .lightbox-content {
+      position: relative;
+      max-width: 90%;
+      max-height: 80%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .lightbox-img {
+      max-width: 100%;
+      max-height: 80vh;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transform: scale(0.9);
+      transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      user-select: none;
+    }
+
+    .lightbox-modal.open .lightbox-img {
+      transform: scale(1);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      width: 44px;
+      height: 44px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      z-index: 10001;
+    }
+
+    .lightbox-close:hover {
+      background: #ff3b30;
+      border-color: #ff3b30;
+      transform: rotate(90deg);
+    }
+
+    /* Lightbox Nav Buttons */
+    .lightbox-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 60px;
+      height: 60px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 50%;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      z-index: 10000;
+      user-select: none;
+    }
+
+    .lightbox-btn:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      box-shadow: 0 0 20px rgba(255, 105, 0, 0.5);
+    }
+
+    .lightbox-prev { left: 40px; }
+    .lightbox-next { right: 40px; }
+
+    @media (max-width: 768px) {
+      .lightbox-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+      }
+      .lightbox-prev { left: 10px; }
+      .lightbox-next { right: 10px; }
+    }
+
+    .lightbox-counter {
+      position: absolute;
+      bottom: 24px;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      user-select: none;
     }
 
     /* WhatsApp Button */
@@ -1343,60 +1534,41 @@
           </div>
         </div>
       </div>
-    </section>
-
     <section id="galeria" class="gallery-section">
       <div class="container">
         <div class="section-title reveal" style="text-align: center;">
           <h2><span>GALERIA</span></h2>
         </div>
       </div>
-      <div class="gallery-marquee" id="galleryMarquee">
-        <div class="gallery-item"><img
-            src="https://images.unsplash.com/photo-1464207687429-750564f3ac85?auto=format&fit=crop&w=600" alt="Galeria">
+
+      <div class="gallery-container-relative">
+        <!-- Navigation Buttons -->
+        <button class="gallery-nav-btn gallery-nav-prev" id="galleryPrev" aria-label="Anterior">◀</button>
+        <button class="gallery-nav-btn gallery-nav-next" id="galleryNext" aria-label="Próximo">▶</button>
+
+        <!-- Draggable Wrapper -->
+        <div class="gallery-wrapper" id="galleryWrapper">
+          <div class="gallery-marquee" id="galleryMarquee" style="display: flex; gap: 20px; width: max-content;">
+            <!-- Images will be rendered dynamically here -->
+          </div>
         </div>
-        <div class="gallery-item"><img
-            src="https://images.unsplash.com/photo-1501555088652-021faa106b9b?auto=format&fit=crop&w=600" alt="Galeria">
-        </div>
-        <div class="gallery-item"><img
-            src="https://images.unsplash.com/photo-1517601278517-85b46610b754?auto=format&fit=crop&w=600" alt="Galeria">
-        </div>
-        <div class="gallery-item"><img
-            src="https://images.unsplash.com/photo-1525026198548-4baa0d2f15eb?auto=format&fit=crop&w=600" alt="Galeria">
-        </div>
-        <div class="gallery-item"><img
-            src="https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?auto=format&fit=crop&w=600" alt="Galeria">
-        </div>
-        <div class="gallery-item"><img
-            src="https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=600" alt="Galeria">
-        </div>
-        <div class="gallery-item"><img
-            src="https://images.unsplash.com/photo-1464207687429-750564f3ac85?auto=format&fit=crop&w=600" alt="Galeria">
-        </div>
-        <div class="gallery-item"><img
-            src="https://images.unsplash.com/photo-1501555088652-021faa106b9b?auto=format&fit=crop&w=600" alt="Galeria">
-        </div>
-        <div class="gallery-item"><img
-            src="https://images.unsplash.com/photo-1517601278517-85b46610b754?auto=format&fit=crop&w=600" alt="Galeria">
-        </div>
-        <div class="gallery-item"><img
-            src="https://images.unsplash.com/photo-1525026198548-4baa0d2f15eb?auto=format&fit=crop&w=600" alt="Galeria">
-        </div>
-        <div class="gallery-item"><img
-            src="https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?auto=format&fit=crop&w=600" alt="Galeria">
-        </div>
-        <div class="gallery-item"><img
-            src="https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=600" alt="Galeria">
-        </div>
+
+        <!-- Pagination Dots -->
+        <div class="gallery-dots" id="galleryDots"></div>
       </div>
     </section>
 
     <script>
       async function loadGallery() {
         const marquee = document.getElementById('galleryMarquee');
+        const wrapper = document.getElementById('galleryWrapper');
+        const dotsContainer = document.getElementById('galleryDots');
+        const prevBtn = document.getElementById('galleryPrev');
+        const nextBtn = document.getElementById('galleryNext');
+        
         let photosFound = [];
 
-        // Lista estática de arquivos atualmente no diretório como plano de fundo (fallback)
+        // Static fallback photos
         const fallbackPhotos = [
           'galeria/foto1.webp',
           'galeria/foto2.webp',
@@ -1406,7 +1578,6 @@
         ];
 
         try {
-          // Tenta ler dinamicamente o conteúdo da pasta (funciona na maioria dos servidores locais como VS Code Live Server)
           const response = await fetch('galeria/');
           if (response.ok) {
             const text = await response.text();
@@ -1414,7 +1585,6 @@
             const doc = parser.parseFromString(text, 'text/html');
             const links = Array.from(doc.querySelectorAll('a'));
             
-            // Extensões de imagem suportadas
             const imageExtensions = ['.webp', '.jpg', '.jpeg', '.png', '.gif', '.svg'];
             const detectedPhotos = links
               .map(link => link.getAttribute('href'))
@@ -1424,40 +1594,278 @@
                 return `galeria/${decodeURIComponent(filename)}`;
               });
             
-            // Filtra duplicatas
             photosFound = [...new Set(detectedPhotos)];
           }
         } catch (e) {
           console.log('Utilizando a lista estática de imagens de galeria.');
         }
 
-        // Caso a leitura dinâmica falhe ou não encontre fotos, usa a lista de fallback
         if (photosFound.length === 0) {
           photosFound = fallbackPhotos;
         }
 
         if (photosFound.length > 0) {
+          // Render original photos without duplication
           marquee.innerHTML = '';
-          // Renderiza a galeria principal e a duplicada para efeito infinito
-          const renderPhotos = [...photosFound, ...photosFound];
-          renderPhotos.forEach(src => {
+          dotsContainer.innerHTML = '';
+
+          photosFound.forEach((src, index) => {
+            // Render gallery item
             const item = document.createElement('div');
             item.className = 'gallery-item';
             item.innerHTML = `<img src="${src}" alt="Legendários Porto Velho" loading="lazy">`;
+            
+            // Open Lightbox on Click (distinguishing from drag)
+            item.addEventListener('click', (e) => {
+              if (draggedDistance < 10) {
+                openLightbox(index);
+              }
+            });
             marquee.appendChild(item);
+
+            // Render dot
+            const dot = document.createElement('div');
+            dot.className = `gallery-dot ${index === 0 ? 'active' : ''}`;
+            dot.addEventListener('click', () => {
+              stopAutoplay();
+              const itemWidth = window.innerWidth > 768 ? 420 : 320;
+              wrapper.scrollTo({
+                left: index * itemWidth,
+                behavior: 'smooth'
+              });
+              updateActiveDot(index);
+              startAutoplayDelayed();
+            });
+            dotsContainer.appendChild(dot);
           });
 
-          const itemWidth = window.innerWidth > 768 ? 420 : 320;
-          const totalWidth = itemWidth * photosFound.length;
-          const style = document.createElement('style');
-          style.innerHTML = `
-            @keyframes marquee {
-              0% { transform: translateX(0); }
-              100% { transform: translateX(-${totalWidth}px); }
+          // Horizontal scroll measurements
+          const getItemWidth = () => window.innerWidth > 768 ? 420 : 320;
+
+          // Update active dot on scroll
+          let scrollTimeout;
+          wrapper.addEventListener('scroll', () => {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+              const itemWidth = getItemWidth();
+              const activeIndex = Math.round(wrapper.scrollLeft / itemWidth);
+              updateActiveDot(activeIndex);
+            }, 50);
+          });
+
+          const updateActiveDot = (index) => {
+            const dots = dotsContainer.querySelectorAll('.gallery-dot');
+            dots.forEach((dot, idx) => {
+              if (idx === index) {
+                dot.classList.add('active');
+              } else {
+                dot.classList.remove('active');
+              }
+            });
+          };
+
+          // Mouse dragging functionality
+          let isDragging = false;
+          let startX;
+          let scrollLeftStart;
+          let draggedDistance = 0;
+
+          wrapper.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            wrapper.classList.add('active');
+            startX = e.pageX - wrapper.offsetLeft;
+            scrollLeftStart = wrapper.scrollLeft;
+            draggedDistance = 0;
+            stopAutoplay();
+          });
+
+          wrapper.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+            const x = e.pageX - wrapper.offsetLeft;
+            const walk = (x - startX) * 1.5;
+            wrapper.scrollLeft = scrollLeftStart - walk;
+            draggedDistance = Math.abs(x - startX);
+          });
+
+          const stopDragging = () => {
+            if (!isDragging) return;
+            isDragging = false;
+            wrapper.classList.remove('active');
+            startAutoplayDelayed();
+          };
+
+          wrapper.addEventListener('mouseup', stopDragging);
+          wrapper.addEventListener('mouseleave', stopDragging);
+
+          // Mobile touch interaction to pause autoplay
+          wrapper.addEventListener('touchstart', () => {
+            stopAutoplay();
+          }, { passive: true });
+
+          wrapper.addEventListener('touchend', () => {
+            startAutoplayDelayed();
+          }, { passive: true });
+
+          // Side Arrow Controls
+          prevBtn.addEventListener('click', () => {
+            stopAutoplay();
+            const itemWidth = getItemWidth();
+            wrapper.scrollBy({
+              left: -itemWidth,
+              behavior: 'smooth'
+            });
+            startAutoplayDelayed();
+          });
+
+          nextBtn.addEventListener('click', () => {
+            stopAutoplay();
+            const itemWidth = getItemWidth();
+            const maxScroll = wrapper.scrollWidth - wrapper.clientWidth;
+            if (wrapper.scrollLeft >= maxScroll - 5) {
+              // Wrap back to start
+              wrapper.scrollTo({
+                left: 0,
+                behavior: 'smooth'
+              });
+            } else {
+              wrapper.scrollBy({
+                left: itemWidth,
+                behavior: 'smooth'
+              });
             }
-          `;
-          document.head.appendChild(style);
+            startAutoplayDelayed();
+          });
+
+          // Autoplay behavior
+          let autoplayInterval;
+          let autoplayTimeout;
+
+          const startAutoplay = () => {
+            stopAutoplay();
+            autoplayInterval = setInterval(() => {
+              const itemWidth = getItemWidth();
+              const maxScroll = wrapper.scrollWidth - wrapper.clientWidth;
+              
+              if (wrapper.scrollLeft >= maxScroll - 10) {
+                wrapper.scrollTo({
+                  left: 0,
+                  behavior: 'smooth'
+                });
+              } else {
+                wrapper.scrollBy({
+                  left: itemWidth,
+                  behavior: 'smooth'
+                });
+              }
+            }, 4000);
+          };
+
+          const stopAutoplay = () => {
+            clearInterval(autoplayInterval);
+            clearTimeout(autoplayTimeout);
+          };
+
+          const startAutoplayDelayed = () => {
+            stopAutoplay();
+            autoplayTimeout = setTimeout(startAutoplay, 6000); // 6s delay before restarting autoplay
+          };
+
+          // Mouse hover pauses autoplay
+          wrapper.addEventListener('mouseenter', stopAutoplay);
+          wrapper.addEventListener('mouseleave', startAutoplayDelayed);
+
+          // Initial start
+          startAutoplay();
         }
+
+        // Lightbox Functionality Setup
+        const lightbox = document.getElementById('lightboxModal');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxClose = document.getElementById('lightboxClose');
+        const lightboxPrev = document.getElementById('lightboxPrev');
+        const lightboxNext = document.getElementById('lightboxNext');
+        const lightboxCounter = document.getElementById('lightboxCounter');
+
+        let currentLightboxIndex = 0;
+
+        const openLightbox = (index) => {
+          currentLightboxIndex = index;
+          updateLightboxContent();
+          lightbox.classList.add('open');
+          document.body.style.overflow = 'hidden'; // Stop background scrolling
+        };
+
+        const closeLightbox = () => {
+          lightbox.classList.remove('open');
+          document.body.style.overflow = ''; // Restore scrolling
+        };
+
+        const nextLightbox = () => {
+          currentLightboxIndex = (currentLightboxIndex + 1) % photosFound.length;
+          updateLightboxContent();
+        };
+
+        const prevLightbox = () => {
+          currentLightboxIndex = (currentLightboxIndex - 1 + photosFound.length) % photosFound.length;
+          updateLightboxContent();
+        };
+
+        const updateLightboxContent = () => {
+          const src = photosFound[currentLightboxIndex];
+          lightboxImg.style.transform = 'scale(0.9)';
+          lightboxImg.style.opacity = '0';
+          
+          setTimeout(() => {
+            lightboxImg.src = src;
+            lightboxCounter.textContent = `${currentLightboxIndex + 1} / ${photosFound.length}`;
+            lightboxImg.style.transform = 'scale(1)';
+            lightboxImg.style.opacity = '1';
+          }, 150); // Elegant cross-fade scaling transition
+        };
+
+        // Attach Lightbox Listeners
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightboxNext.addEventListener('click', nextLightbox);
+        lightboxPrev.addEventListener('click', prevLightbox);
+
+        // Click outside image dismisses lightbox
+        lightbox.addEventListener('click', (e) => {
+          if (e.target === lightbox || e.target.classList.contains('lightbox-content')) {
+            closeLightbox();
+          }
+        });
+
+        // Keyboard Controls
+        document.addEventListener('keydown', (e) => {
+          if (!lightbox.classList.contains('open')) return;
+          
+          if (e.key === 'Escape') closeLightbox();
+          else if (e.key === 'ArrowRight') nextLightbox();
+          else if (e.key === 'ArrowLeft') prevLightbox();
+        });
+
+        // Mobile touch swipe gestures inside Lightbox
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        lightbox.addEventListener('touchstart', (e) => {
+          touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        lightbox.addEventListener('touchend', (e) => {
+          touchEndX = e.changedTouches[0].screenX;
+          handleSwipeGesture();
+        }, { passive: true });
+
+        const handleSwipeGesture = () => {
+          const swipeThreshold = 50;
+          if (touchEndX < touchStartX - swipeThreshold) {
+            nextLightbox(); // Swiped left
+          } else if (touchEndX > touchStartX + swipeThreshold) {
+            prevLightbox(); // Swiped right
+          }
+        };
       }
       window.addEventListener('DOMContentLoaded', loadGallery);
     </script>
@@ -1867,6 +2275,17 @@
       }
     });
   </script>
+
+  <!-- Lightbox Modal -->
+  <div class="lightbox-modal" id="lightboxModal">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Fechar Modal">&times;</button>
+    <button class="lightbox-btn lightbox-prev" id="lightboxPrev" aria-label="Imagem Anterior">◀</button>
+    <button class="lightbox-btn lightbox-next" id="lightboxNext" aria-label="Próxima Imagem">▶</button>
+    <div class="lightbox-content">
+      <img src="" alt="Legendários Porto Velho" class="lightbox-img" id="lightboxImg">
+    </div>
+    <div class="lightbox-counter" id="lightboxCounter">0 / 0</div>
+  </div>
 
 </body>
 
