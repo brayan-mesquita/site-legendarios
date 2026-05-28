@@ -260,6 +260,29 @@
       width: 100%;
     }
 
+    /* Mobile Menu Button styles (hidden on desktop) */
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      z-index: 110;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 30px;
+      height: 20px;
+    }
+
+    .mobile-menu-btn .bar {
+      display: block;
+      width: 100%;
+      height: 3px;
+      background-color: var(--fg);
+      border-radius: 2px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
     /* Hero */
     .hero {
       position: relative;
@@ -1474,8 +1497,72 @@
         margin-bottom: 32px;
       }
 
+      .mobile-menu-btn {
+        display: flex;
+      }
+
       .nav-links {
-        display: none;
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: rgba(10, 10, 10, 0.95);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        padding: 0 24px;
+        border-bottom: 2px solid transparent;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
+        z-index: 99;
+        gap: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.4s;
+      }
+
+      .nav-links.active {
+        max-height: 350px;
+        padding: 24px;
+        border-bottom-color: var(--accent);
+      }
+
+      .nav-links a {
+        font-size: 15px;
+        font-weight: 700;
+        padding: 14px 0;
+        width: 100%;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        text-align: center;
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: opacity 0.3s ease, transform 0.3s ease, color 0.2s;
+      }
+
+      .nav-links.active a {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .nav-links.active a:nth-child(1) { transition-delay: 0.05s; }
+      .nav-links.active a:nth-child(2) { transition-delay: 0.1s; }
+      .nav-links.active a:nth-child(3) { transition-delay: 0.15s; }
+      .nav-links.active a:nth-child(4) { transition-delay: 0.2s; }
+      .nav-links.active a:nth-child(5) { transition-delay: 0.25s; }
+
+      .nav-links a:last-child {
+        border-bottom: none;
+      }
+
+      /* Sandwich button active animation */
+      .mobile-menu-btn.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+      }
+      .mobile-menu-btn.active .bar:nth-child(2) {
+        opacity: 0;
+      }
+      .mobile-menu-btn.active .bar:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
       }
 
       .form-grid {
@@ -1516,13 +1603,18 @@
           <img src="logo.png" alt="Legendários Porto Velho">
         </a>
       </div>
-      <nav class="nav-links">
+      <nav class="nav-links" id="navLinks">
         <a href="#">Home</a>
         <a href="#sobre">O Movimento</a>
         <a href="#video">Experiência</a>
-        <a href="#eventos">Eventos</a>
+        <a href="#inscricao">Eventos</a>
         <a href="#faq">FAQ</a>
       </nav>
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
     </div>
   </header>
 
@@ -2108,7 +2200,7 @@
             <li><a href="#">Home</a></li>
             <li><a href="#sobre">O Movimento</a></li>
             <li><a href="#video">Experiência</a></li>
-            <li><a href="#eventos">Eventos</a></li>
+            <li><a href="#inscricao">Eventos</a></li>
             <li><a href="#faq">FAQ</a></li>
           </ul>
         </div>
@@ -2304,6 +2396,35 @@
         const scrollPercent = (scrollTop / docHeight) * 100;
         scrollProgress.style.width = scrollPercent + '%';
       });
+
+      // Mobile menu toggle logic
+      const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+      const navLinks = document.getElementById('navLinks');
+
+      if (mobileMenuBtn && navLinks) {
+        mobileMenuBtn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          mobileMenuBtn.classList.toggle('active');
+          navLinks.classList.toggle('active');
+        });
+
+        // Close menu when clicking on any nav link
+        const links = navLinks.querySelectorAll('a');
+        links.forEach(link => {
+          link.addEventListener('click', () => {
+            mobileMenuBtn.classList.remove('active');
+            navLinks.classList.remove('active');
+          });
+        });
+
+        // Close menu when clicking outside of header
+        document.addEventListener('click', function (e) {
+          if (!header.contains(e.target)) {
+            mobileMenuBtn.classList.remove('active');
+            navLinks.classList.remove('active');
+          }
+        });
+      }
     });
   </script>
 
